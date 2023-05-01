@@ -148,109 +148,7 @@ const Keyboard = {
 
   _createKeys(keyLayout = keyLayoutEn) {
     const fragment = document.createDocumentFragment();
-    // let keyLayout = [];
-    // let leng;
-    // const keyLayoutEn = [
-    //   "1",
-    //   "2",
-    //   "3",
-    //   "4",
-    //   "5",
-    //   "6",
-    //   "7",
-    //   "8",
-    //   "9",
-    //   "0",
-    //   "backspace",
-    //   leng,
-    //   "q",
-    //   "w",
-    //   "e",
-    //   "r",
-    //   "t",
-    //   "y",
-    //   "u",
-    //   "i",
-    //   "o",
-    //   "p",
-    //   "caps",
-    //   "a",
-    //   "s",
-    //   "d",
-    //   "f",
-    //   "g",
-    //   "h",
-    //   "j",
-    //   "k",
-    //   "l",
-    //   "enter",
-    //   "done",
-    //   "z",
-    //   "x",
-    //   "c",
-    //   "v",
-    //   "b",
-    //   "n",
-    //   "m",
-    //   ",",
-    //   ".",
-    //   "?",
-    //   "space",
-    // ];
-
-    // const keyLayoutRu = [
-    //   "1",
-    //   "2",
-    //   "3",
-    //   "4",
-    //   "5",
-    //   "6",
-    //   "7",
-    //   "8",
-    //   "9",
-    //   "0",
-    //   "backspace",
-    //   leng,
-    //   "й",
-    //   "ц",
-    //   "у",
-    //   "к",
-    //   "е",
-    //   "н",
-    //   "г",
-    //   "ш",
-    //   "щ",
-    //   "з",
-    //   "х",
-    //   "ъ",
-    //   "caps",
-    //   "ф",
-    //   "ы",
-    //   "в",
-    //   "а",
-    //   "п",
-    //   "р",
-    //   "о",
-    //   "л",
-    //   "д",
-    //   "ж",
-    //   "э",
-    //   "enter",
-    //   "done",
-    //   "я",
-    //   "ч",
-    //   "с",
-    //   "м",
-    //   "и",
-    //   "т",
-    //   "ь",
-    //   "б",
-    //   "ю",
-    //   ",",
-    //   ".",
-    //   "?",
-    //   "space",
-    // ];
+   
 
     // Creates HTML for an icon
     const createIconHTML = (icon_name) => {
@@ -414,21 +312,9 @@ const Keyboard = {
   },
 };
 
-window.addEventListener("DOMContentLoaded", function () {
-  Keyboard.init();
-});
-
-// document.getElementById("w").addEventListener("click", (e) => {
-//   document.querySelector(".use-keyboard-input").focus();
-//   document.getElementById("q").selectionEnd  -= 1;
-//   console.log(document.getElementById("q").selectionStart);
-// //   document.getElementById("q").addEventListener("keyup", (e) => {
-// //     e.target.selectionStart += 1;
-// //     console.log("Caret at: ", e.target.selectionStart);
-// //   });
-// });
-
 
 window.onload = () => {
-    document.querySelector(".container").innerHTML = '<textarea class="textarea use-keyboard-input" name="" id="q"></textarea>'
-}
+  document.querySelector(".container").innerHTML =
+    '<textarea class="textarea use-keyboard-input" name="" id="q"></textarea>';
+  Keyboard.init();
+};
