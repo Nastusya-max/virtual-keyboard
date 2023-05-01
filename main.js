@@ -16,6 +16,7 @@ const Keyboard = {
   },
 
   init() {
+    
     // Create main elements
     this.elements.main = document.createElement("div");
     this.elements.keysContainer = document.createElement("div");
@@ -37,6 +38,7 @@ const Keyboard = {
       element.addEventListener("focus", () => {
         this.open(element.value, (currentValue) => {
           element.value = currentValue;
+          document.querySelector(".use-keyboard-input").focus()
         });
       });
     });
@@ -185,6 +187,7 @@ const Keyboard = {
               ? key.toUpperCase()
               : key.toLowerCase();
             this._triggerEvent("oninput");
+            
           });
 
           break;
@@ -211,7 +214,6 @@ const Keyboard = {
 
     for (const key of this.elements.keys) {
       if (key.childElementCount === 0) {
-        console.log(Array.from(key.classList).indexOf("keyboard__letter"));
         key.textContent =
           this.properties.capsLock &&
           Array.from(key.classList).indexOf("keyboard__letter") != -1
@@ -226,6 +228,7 @@ const Keyboard = {
     this.eventHandlers.oninput = oninput;
     this.eventHandlers.onclose = onclose;
     this.elements.main.classList.remove("keyboard--hidden");
+    
   },
 
   close() {
