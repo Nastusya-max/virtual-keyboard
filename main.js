@@ -1,3 +1,106 @@
+let leng;
+const keyLayoutEn = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "0",
+  "backspace",
+  leng,
+  "q",
+  "w",
+  "e",
+  "r",
+  "t",
+  "y",
+  "u",
+  "i",
+  "o",
+  "p",
+  "caps",
+  "a",
+  "s",
+  "d",
+  "f",
+  "g",
+  "h",
+  "j",
+  "k",
+  "l",
+  "enter",
+  "done",
+  "z",
+  "x",
+  "c",
+  "v",
+  "b",
+  "n",
+  "m",
+  ",",
+  ".",
+  "?",
+  "space",
+];
+
+const keyLayoutRu = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "0",
+  "backspace",
+  leng,
+  "й",
+  "ц",
+  "у",
+  "к",
+  "е",
+  "н",
+  "г",
+  "ш",
+  "щ",
+  "з",
+  "х",
+  "ъ",
+  "caps",
+  "ф",
+  "ы",
+  "в",
+  "а",
+  "п",
+  "р",
+  "о",
+  "л",
+  "д",
+  "ж",
+  "э",
+  "enter",
+  "done",
+  "я",
+  "ч",
+  "с",
+  "м",
+  "и",
+  "т",
+  "ь",
+  "б",
+  "ю",
+  ",",
+  ".",
+  "?",
+  "space",
+];
+
 const Keyboard = {
   elements: {
     main: null,
@@ -16,7 +119,6 @@ const Keyboard = {
   },
 
   init() {
-    
     // Create main elements
     this.elements.main = document.createElement("div");
     this.elements.keysContainer = document.createElement("div");
@@ -38,65 +140,124 @@ const Keyboard = {
       element.addEventListener("focus", () => {
         this.open(element.value, (currentValue) => {
           element.value = currentValue;
-          document.querySelector(".use-keyboard-input").focus()
+          document.querySelector(".use-keyboard-input").focus();
         });
       });
     });
   },
 
-  _createKeys() {
+  _createKeys(keyLayout = keyLayoutEn) {
     const fragment = document.createDocumentFragment();
-    const keyLayout = [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "0",
-      "backspace",
-      "q",
-      "w",
-      "e",
-      "r",
-      "t",
-      "y",
-      "u",
-      "i",
-      "o",
-      "p",
-      "caps",
-      "a",
-      "s",
-      "d",
-      "f",
-      "g",
-      "h",
-      "j",
-      "k",
-      "l",
-      "enter",
-      "done",
-      "z",
-      "x",
-      "c",
-      "v",
-      "b",
-      "n",
-      "m",
-      ",",
-      ".",
-      "?",
-      "space",
-    ];
+    // let keyLayout = [];
+    // let leng;
+    // const keyLayoutEn = [
+    //   "1",
+    //   "2",
+    //   "3",
+    //   "4",
+    //   "5",
+    //   "6",
+    //   "7",
+    //   "8",
+    //   "9",
+    //   "0",
+    //   "backspace",
+    //   leng,
+    //   "q",
+    //   "w",
+    //   "e",
+    //   "r",
+    //   "t",
+    //   "y",
+    //   "u",
+    //   "i",
+    //   "o",
+    //   "p",
+    //   "caps",
+    //   "a",
+    //   "s",
+    //   "d",
+    //   "f",
+    //   "g",
+    //   "h",
+    //   "j",
+    //   "k",
+    //   "l",
+    //   "enter",
+    //   "done",
+    //   "z",
+    //   "x",
+    //   "c",
+    //   "v",
+    //   "b",
+    //   "n",
+    //   "m",
+    //   ",",
+    //   ".",
+    //   "?",
+    //   "space",
+    // ];
+
+    // const keyLayoutRu = [
+    //   "1",
+    //   "2",
+    //   "3",
+    //   "4",
+    //   "5",
+    //   "6",
+    //   "7",
+    //   "8",
+    //   "9",
+    //   "0",
+    //   "backspace",
+    //   leng,
+    //   "й",
+    //   "ц",
+    //   "у",
+    //   "к",
+    //   "е",
+    //   "н",
+    //   "г",
+    //   "ш",
+    //   "щ",
+    //   "з",
+    //   "х",
+    //   "ъ",
+    //   "caps",
+    //   "ф",
+    //   "ы",
+    //   "в",
+    //   "а",
+    //   "п",
+    //   "р",
+    //   "о",
+    //   "л",
+    //   "д",
+    //   "ж",
+    //   "э",
+    //   "enter",
+    //   "done",
+    //   "я",
+    //   "ч",
+    //   "с",
+    //   "м",
+    //   "и",
+    //   "т",
+    //   "ь",
+    //   "б",
+    //   "ю",
+    //   ",",
+    //   ".",
+    //   "?",
+    //   "space",
+    // ];
 
     // Creates HTML for an icon
     const createIconHTML = (icon_name) => {
       return `<i class="material-icons">${icon_name}</i>`;
     };
+
+    // keyLayout = keyLayoutEn;
 
     keyLayout.forEach((key) => {
       const keyElement = document.createElement("button");
@@ -178,6 +339,22 @@ const Keyboard = {
           });
 
           break;
+        case leng:
+          JSON.stringify(keyLayout) == JSON.stringify(keyLayoutEn)
+            ? (keyElement.textContent = "ru")
+            : (keyElement.textContent = "en");
+
+          keyElement.addEventListener("click", () => {
+            JSON.stringify(keyLayout) == JSON.stringify(keyLayoutEn)
+              ? (keyLayout = keyLayoutRu.slice(0))
+              : (keyLayout = keyLayoutEn.slice(0));
+            // console.log(this._createKeys(keyLayout));
+            this.elements.keysContainer.innerHTML = "";
+            this.elements.keysContainer.appendChild(
+              this._createKeys(keyLayout)
+            );
+          });
+          break;
 
         default:
           keyElement.textContent = key.toLowerCase();
@@ -187,7 +364,6 @@ const Keyboard = {
               ? key.toUpperCase()
               : key.toLowerCase();
             this._triggerEvent("oninput");
-            
           });
 
           break;
@@ -228,7 +404,6 @@ const Keyboard = {
     this.eventHandlers.oninput = oninput;
     this.eventHandlers.onclose = onclose;
     this.elements.main.classList.remove("keyboard--hidden");
-    
   },
 
   close() {
