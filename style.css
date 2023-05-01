@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  max-width: 80rem; /* 1440px */
+  max-width: 50rem; /* 1440px */
   padding: 2rem 3.75rem;
   margin: 0 auto;
 }
@@ -9,7 +9,7 @@
  
   width: 700px;
   max-width: 700px;
-  height: 200px;
+  height: 150px;
   max-height: 300px;
   display: block;
   margin: auto;
