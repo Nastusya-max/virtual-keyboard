@@ -417,3 +417,18 @@ const Keyboard = {
 window.addEventListener("DOMContentLoaded", function () {
   Keyboard.init();
 });
+
+// document.getElementById("w").addEventListener("click", (e) => {
+//   document.querySelector(".use-keyboard-input").focus();
+//   document.getElementById("q").selectionEnd  -= 1;
+//   console.log(document.getElementById("q").selectionStart);
+// //   document.getElementById("q").addEventListener("keyup", (e) => {
+// //     e.target.selectionStart += 1;
+// //     console.log("Caret at: ", e.target.selectionStart);
+// //   });
+// });
+
+
+window.onload = () => {
+    document.querySelector(".container").innerHTML = '<textarea class="textarea use-keyboard-input" name="" id="q"></textarea>'
+}
