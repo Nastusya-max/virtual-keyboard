@@ -1,106 +1,7 @@
 let leng;
-const keyLayoutEn = [
-  '1',
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-  '0',
-  'backspace',
-  leng,
-  'q',
-  'w',
-  'e',
-  'r',
-  't',
-  'y',
-  'u',
-  'i',
-  'o',
-  'p',
-  'caps',
-  'a',
-  's',
-  'd',
-  'f',
-  'g',
-  'h',
-  'j',
-  'k',
-  'l',
-  'enter',
-  'done',
-  'z',
-  'x',
-  'c',
-  'v',
-  'b',
-  'n',
-  'm',
-  ',',
-  '.',
-  '?',
-  'space',
-];
-
-const keyLayoutRu = [
-  '1',
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-  '0',
-  'backspace',
-  leng,
-  'й',
-  'ц',
-  'у',
-  'к',
-  'е',
-  'н',
-  'г',
-  'ш',
-  'щ',
-  'з',
-  'х',
-  'ъ',
-  'caps',
-  'ф',
-  'ы',
-  'в',
-  'а',
-  'п',
-  'р',
-  'о',
-  'л',
-  'д',
-  'ж',
-  'э',
-  'enter',
-  'done',
-  'я',
-  'ч',
-  'с',
-  'м',
-  'и',
-  'т',
-  'ь',
-  'б',
-  'ю',
-  ',',
-  '.',
-  '?',
-  'space',
-];
-
+const keyLayoutEn = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'backspace', leng, 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'enter', 'done', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '?', 'space'];
+const keyLayoutRu = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'backspace', leng, 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'caps', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'enter', 'done', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', ',', '.', '?', 'space'];
+let keyLayout = keyLayoutEn;
 class Keyboard {
   constructor() {
     this.elements = {
@@ -137,16 +38,16 @@ class Keyboard {
     // Automatically use keyboard for elements with .use-keyboard-input
     document.querySelectorAll('.use-keyboard-input').forEach((element) => {
       element.addEventListener('focus', () => {
-        this.open(element.value, (currentValue) => {
-          // eslint-disable-next-line no-param-reassign
-          element.value = currentValue;
+        const focusElement = element;
+        this.open(focusElement.value, (currentValue) => {
+          focusElement.value = currentValue;
           document.querySelector('.use-keyboard-input').focus();
         });
       });
     });
   }
 
-  createKeys(keyLayout = keyLayoutEn) {
+  createKeys() {
     const fragment = document.createDocumentFragment();
 
     keyLayout.forEach((key) => {
@@ -232,10 +133,8 @@ class Keyboard {
 
           keyElement.addEventListener('click', () => {
             if (JSON.stringify(keyLayout) === JSON.stringify(keyLayoutEn)) {
-              // eslint-disable-next-line no-param-reassign
               keyLayout = keyLayoutRu.slice(0);
             } else {
-              // eslint-disable-next-line no-param-reassign
               keyLayout = keyLayoutEn.slice(0);
             }
             // console.log(this._createKeys(keyLayout));
@@ -278,15 +177,15 @@ class Keyboard {
   toggleCapsLock() {
     this.properties.capsLock = !this.properties.capsLock;
 
-    // eslint-disable-next-line no-restricted-syntax
-    for (const key of this.elements.keys) {
-      if (key.childElementCount === 0) {
-        key.textContent = this.properties.capsLock
+    this.elements.keys.forEach((key) => {
+      const keyElement = key;
+      if (keyElement.childElementCount === 0) {
+        keyElement.textContent = this.properties.capsLock
         && Array.from(key.classList).indexOf('keyboard__letter') !== -1
           ? key.textContent.toUpperCase()
           : key.textContent.toLowerCase();
       }
-    }
+    });
   }
 
   open(initialValue, oninput, onclose) {
